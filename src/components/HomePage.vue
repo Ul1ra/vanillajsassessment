@@ -6,7 +6,8 @@
       </button>
     </div>
     <h1>{{ $t('welcomeMsg') }}</h1>
-    <label for="dropdown">Choose Travel Date </label>
+    <label for="dropdown">{{ $t('label') }}</label>
+    <br/>
     <select id="dropdown" v-model="selected">
       <option v-for="(cruise, index) in cruises" :value="index">{{formatDate(cruise.departureDate)}} -
         {{formatDate(cruise.arrivalDate)}} / {{toEuro(cruise.price)}}</option>
@@ -29,7 +30,7 @@
 
 <script>
 import CustomDate from "./CustomDate.vue"
-import messages from "@/plugins/i18n.js"
+import i18n from "@/plugins/i18n.js"
 
 export default {
   components: {
@@ -76,9 +77,7 @@ export default {
       return day + '.' + month + '.' + year
     },
     changeLocale(locale) {
-      console.log(messages.locale)
-      messages.locale = locale;
-      
+      i18n.locale = locale;
     }
   },
 
